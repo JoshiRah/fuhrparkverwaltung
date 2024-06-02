@@ -97,7 +97,7 @@ def getBaujahr():
 
 def createFahrzeug():
     print("\n")
-    print('Fahrzeug wird angelegt: \n')
+    print('### Fahrzeug wird angelegt ### \n')
     sql = "INSERT INTO fahrzeug (ID_Kennzeichen, Marke, Modell, Baujahr) VALUES (%s, %s, %s, %s)"
     val = (getKennzeichen(), getMarke(), getModell(), getBaujahr())
     srccursor.execute(sql, val)
@@ -105,7 +105,7 @@ def createFahrzeug():
 
 def deleteFahrer():
 
-    print("\n### Menü - Fahrer löschen ###")
+    print("\n### Fahrer löschen ###")
 
     getFahrer()
 
@@ -123,7 +123,7 @@ def deleteFahrer():
 
 def deleteFahrzeug():
 
-    print("\n### Menü - Fahrzeug löschen ###")
+    print("\n### Fahrzeug löschen ###")
 
     getVehicles()
 
