@@ -54,7 +54,7 @@ def getAdresse():
 
 def createFahrer():
     print("\n")
-    print('>>> Fahrer wird angelegt:')
+    print('### Fahrer wird angelegt ###')
     sql = "INSERT INTO fahrer (Name, Fuehrerscheinnr, Adresse) VALUES (%s, %s, %s)"
     val = (getName(), getFSNR(), getAdresse())
     srccursor.execute(sql, val)
