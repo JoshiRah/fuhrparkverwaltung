@@ -17,9 +17,9 @@ srccursor = verbindung.cursor()
 
 '''Globale Variablen'''
 
-usermessage = "\n\n##################################\n| >>> Bitte wählen Sie ein Menü:\n##################################\n\n 1 - Fahrer anzeigen\n 2 - Fahrer anlegen\n 3 - Fahrzeuge anzeigen\n 4 - Fahrzeug anlegen\n 5 - Fahrer löschen\n 6 - Fahrzeug löschen\n 7 - Wartung anlegen\n 8 - Programm beenden"
+usermessage = "\n\n##################################\n| >>> Bitte wählen Sie ein Menü:\n##################################\n\n 1 - Fahrer anzeigen\n 2 - Fahrer anlegen\n 3 - Fahrzeuge anzeigen\n 4 - Fahrzeug anlegen\n 5 - Fahrer löschen\n 6 - Fahrzeug löschen\n 7 - Wartung anlegen\n 8 - Wartungen anzeigen\n 9 - Programm beenden"
 uservalue = 0
-allowedFeatures = [1,2,3,4,5,6,7,8]
+allowedFeatures = [1,2,3,4,5,6,7,8,9]
 state = 1
 
 
@@ -120,7 +120,6 @@ def deleteFahrer():
     sql = "DELETE FROM fahrer WHERE ID_Fahrer = %s"
     givID = (FHR_UserChoice,)
     srccursor.execute(sql, givID)
-    verbindung.commit()
 
 def deleteFahrzeug():
 
@@ -158,6 +157,26 @@ def createWartung():
     srccursor.execute(sql, val)
     verbindung.commit()
 
+def showWartungenByFahrzeug():
+    counter = 1
+    print("\n### Wartungen je Fahrzeug anzeigen###")
+    getFahrzeuge()
+    usr_FZG_value = (input("\n>>> Von welchem Fahrzeug möchten Sie die Wartungen sehen? "), )
+
+    sql = "SELECT * FROM wartung WHERE ID_Kennzeichen = %s"
+    srccursor.execute(sql, usr_FZG_value)
+
+    wartungen = srccursor.fetchall()
+
+    print("\n>>> Registrierte Wartungen für das Fahrzeug mit dem Kennzeichen ", usr_FZG_value)
+
+    for wartung in wartungen:
+        print("\n> Wartung Nr. ", counter)
+        print("Datum der Wartung -> ", wartung[1])
+        print("Durchgeführte Arbeiten -> ", wartung[2])
+        print("Kosten der Wartung -> ", wartung[3])
+
+        counter += 1
 
 '''Programm'''
 
@@ -194,6 +213,9 @@ while state == 1:
         createWartung()
 
     if uservalue == 8:
+        showWartungenByFahrzeug()
+
+    if uservalue == 9:
         state = 0
 
     if uservalue not in allowedFeatures:
