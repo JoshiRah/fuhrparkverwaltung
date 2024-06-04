@@ -1,4 +1,5 @@
 '''Module'''
+import datetime
 
 import mysql.connector
 
@@ -16,9 +17,9 @@ srccursor = verbindung.cursor()
 
 '''Globale Variablen'''
 
-usermessage = "\n\n##################################\n| >>> Bitte wählen Sie ein Menü:\n##################################\n\n 1 - Fahrer anzeigen\n 2 - Fahrer anlegen\n 3 - Fahrzeuge anzeigen\n 4 - Fahrzeug anlegen\n 5 - Fahrer löschen\n 6 - Fahrzeug löschen\n 7 - Programm beenden"
+usermessage = "\n\n##################################\n| >>> Bitte wählen Sie ein Menü:\n##################################\n\n 1 - Fahrer anzeigen\n 2 - Fahrer anlegen\n 3 - Fahrzeuge anzeigen\n 4 - Fahrzeug anlegen\n 5 - Fahrer löschen\n 6 - Fahrzeug löschen\n 7 - Wartung anlegen\n 8 - Programm beenden"
 uservalue = 0
-allowedFeatures = [1,2,3,4,5,6,7]
+allowedFeatures = [1,2,3,4,5,6,7,8]
 state = 1
 
 
@@ -60,7 +61,7 @@ def createFahrer():
     srccursor.execute(sql, val)
     verbindung.commit()
 
-def getVehicles():
+def getFahrzeuge():
     lfdid = 1
     print("\n")
     print('>>> Fahrzeuge werden angezeigt: ')
@@ -125,7 +126,7 @@ def deleteFahrzeug():
 
     print("\n### Fahrzeug löschen ###")
 
-    getVehicles()
+    getFahrzeuge()
 
     while True:
         try:
@@ -138,6 +139,25 @@ def deleteFahrzeug():
     givID = (FZG_UserChoice,)
     srccursor.execute(sql, givID)
     verbindung.commit()
+
+def createWartung():
+    print('\n### Wartung wird angelegt ### \n')
+    fzg_ID = input("\nGeben Sie das Kennzeichen des Fahrzeuges an: ")
+    datum = str(datetime.datetime.today()).split()[0]
+    arbeiten = input("\nWelche Arbeiten wurden durchgeführt: ")
+
+    while True:
+        try:
+            kosten = float(input("Kosten der Wartung: "))
+            break
+        except:
+            print("\n> Die Kosten müssen als Fließkomma- bzw. Ganzzahl angegeben werden!\n")
+
+    sql = "INSERT INTO wartung (Datum, Arbeiten, Kosten, ID_Kennzeichen) VALUES (%s, %s, %s, %s)"
+    val = (datum, arbeiten, kosten, fzg_ID)
+    srccursor.execute(sql, val)
+    verbindung.commit()
+
 
 '''Programm'''
 
@@ -159,7 +179,7 @@ while state == 1:
         createFahrer()
 
     if uservalue == 3:
-        getVehicles()
+        getFahrzeuge()
 
     if uservalue == 4:
         createFahrzeug()
@@ -171,6 +191,9 @@ while state == 1:
         deleteFahrzeug()
 
     if uservalue == 7:
+        createWartung()
+
+    if uservalue == 8:
         state = 0
 
     if uservalue not in allowedFeatures:
