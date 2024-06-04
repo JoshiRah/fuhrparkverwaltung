@@ -219,5 +219,5 @@ while state == 1:
         state = 0
 
     if uservalue not in allowedFeatures:
-        print(">>> Aktuell werden nur die Funktionen 1 bis 6 unterstützt!")
+        print(">>> Aktuell werden nur die Funktionen ",min(allowedFeatures)," bis ", max(allowedFeatures), " unterstützt!")
         continue
