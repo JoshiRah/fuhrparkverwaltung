@@ -5,12 +5,17 @@ import mysql.connector
 
 '''DB Verbindung'''
 
-verbindung = mysql.connector.connect(
-    host="127.0.0.1",
-    user="root",
-    passwd="",
-    database="fuhrpark"
-)
+while True:
+    try:
+        verbindung = mysql.connector.connect(
+        host="127.0.0.1",
+        user="root",
+        passwd="",
+        database="fuhrpark"
+        )
+        break
+    except:
+        print("\n>>> ACHTUNG - ES KONNTE KEINE DATENANK ERREICHT WERDEN! <<<9")
 
 srccursor = verbindung.cursor()
 
