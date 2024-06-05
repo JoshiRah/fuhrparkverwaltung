@@ -1,5 +1,6 @@
 '''Module'''
 import datetime
+import time
 
 import mysql.connector
 
@@ -197,28 +198,84 @@ while state == 1:
             print('Ihre Eingabe muss eine Ganzzahl sein!')
 
     if uservalue == 1:
-        getFahrer()
+        while True:
+            try:
+                getFahrer()
+                break
+            except:
+                print("\n>>> Achtung! Es ist ein Fehler aufgetreten. Prüfen Sie die Datenbankverbindung!")
+                time.sleep(1)
+                exit()
 
     if uservalue == 2:
-        createFahrer()
+        while True:
+            try:
+                createFahrer()
+                break
+            except:
+                print("\n>>> Achtung! Es ist ein Fehler aufgetreten. Prüfen Sie die Datenbankverbindung!")
+                time.sleep(1)
+                exit()
 
     if uservalue == 3:
-        getFahrzeuge()
+        while True:
+            try:
+                getFahrzeuge()
+                break
+            except:
+                print("\n>>> Achtung! Es ist ein Fehler aufgetreten. Prüfen Sie die Datenbankverbindung!")
+                time.sleep(1)
+                exit()
 
     if uservalue == 4:
-        createFahrzeug()
+        while True:
+            try:
+                createFahrzeug()
+                break
+            except:
+                print("\n>>> Achtung! Es ist ein Fehler aufgetreten. Prüfen Sie die Datenbankverbindung!")
+                time.sleep(1)
+                exit()
 
     if uservalue == 5:
-        deleteFahrer()
+        while True:
+            try:
+                deleteFahrer()
+                break
+            except:
+                print("\n>>> Achtung! Es ist ein Fehler aufgetreten. Prüfen Sie die Datenbankverbindung!")
+                time.sleep(1)
+                exit()
 
     if uservalue == 6:
-        deleteFahrzeug()
+        while True:
+            try:
+                deleteFahrzeug()
+                break
+            except:
+                print("\n>>> Achtung! Es ist ein Fehler aufgetreten. Prüfen Sie die Datenbankverbindung!")
+                time.sleep(1)
+                exit()
 
     if uservalue == 7:
-        createWartung()
+        while True:
+            try:
+                createWartung()
+                break
+            except:
+                print("\n>>> Achtung! Es ist ein Fehler aufgetreten. Prüfen Sie die Datenbankverbindung!")
+                time.sleep(1)
+                exit()
 
     if uservalue == 8:
-        showWartungenByFahrzeug()
+        while True:
+            try:
+                showWartungenByFahrzeug()
+                break
+            except:
+                print("\n>>> Achtung! Es ist ein Fehler aufgetreten. Prüfen Sie die Datenbankverbindung!")
+                time.sleep(1)
+                exit()
 
     if uservalue == 9:
         state = 0
