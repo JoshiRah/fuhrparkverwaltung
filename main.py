@@ -15,7 +15,7 @@ while True:
         )
         break
     except:
-        print("\n>>> ACHTUNG - ES KONNTE KEINE DATENBANK ERREICHT WERDEN! <<<9")
+        print("\n>>> ACHTUNG - ES KONNTE KEINE DATENBANK ERREICHT WERDEN! <<<")
 
 srccursor = verbindung.cursor()
 
